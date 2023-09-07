@@ -1,0 +1,49 @@
+---
+# Deployment for deploying Swap
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deployment
+  namespace: default
+  labels:
+    app: ghost
+spec:
+  selector:
+    matchLabels:
+      app: ghost
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+      - name: ghost
+        image: ghost
+        env:
+        - name: url
+          value: http://{{ ghost_ip }}:{{ ghost_port }}/
+        - name: database__client
+          value: mysql
+        - name: database__connection__host
+          value: {{mysql_host}}
+        - name: database__connection__user
+          value: {{mysql_user}}
+        - name: database__connection__password
+          value: {{mysql_password}}
+        - name: database__connection__database
+          value: {{mysql_database}}
+        - name: mail__transport
+          value: "SMTP"
+        - name: mail__options__service
+          value: "Mailgun"
+        - name: mail__options__auth__user
+          value: "{{ mail_user }}"
+        - name: mail__options__auth__pass
+          value: "{{ mail_pass }}"
+
+        resources:
+            requests:
+              cpu: "250m"
+
+        ports:
+        - containerPort: 2368

@@ -1,0 +1,15 @@
+---
+- name: Destroy mysql PVC
+  kubernetes.core.k8s:
+    state: absent
+    template: "{{ mysql_pvc_file }}"
+- name: Destroy Mysql
+  kubernetes.core.k8s:
+    state: absent
+    template: "{{ mysql_deploy_file }}"
+    wait: true
+- name: Destroy mysql Service
+  kubernetes.core.k8s:
+    state: absent
+    template: "{{ mysql_service_file }}"
+    wait: true

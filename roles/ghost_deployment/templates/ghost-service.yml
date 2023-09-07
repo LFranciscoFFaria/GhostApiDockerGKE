@@ -1,0 +1,16 @@
+# Service for exposing Swap
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost-service
+  namespace: default
+  labels:
+    app: ghost
+spec:
+  type: LoadBalancer 
+  selector:
+    app: ghost
+  ports:
+    - targetPort: 2368 # port that containers are listening on
+      port: {{ ghost_port }} # port exposed internally in the cluster
+  loadBalancerIP: {{ ghost_ip }}

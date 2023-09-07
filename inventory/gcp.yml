@@ -1,0 +1,44 @@
+---
+
+all:
+ vars:
+
+  # GKE cluster variables
+  gcp_project: ascn-tp-369011              # ID of GCP Project
+  gcp_auth_kind: serviceaccount            # Do not change
+  gcp_cred_file: ../ascn-tp-369011-645242ffdca0.json    # Path to service account keys (json file downloaded from GCP)
+
+  gcp_region: us-central1 
+  gcp_zone: us-central1-a
+  gcp_image_type: ubuntu_containerd
+  gcp_machine_type: e2-small           # Can be changed if necessary
+  gcp_disk_size_gb: 100                # Can be changed if necessary
+  gcp_initial_node_count: 4            # Number of nodes to create. Can be changed if necessary
+
+  # APP variables
+  ghost_ip: "34.71.208.30"    
+  ghost_port: 80         
+  ghost_deploy_file: ghost-deployment.yml
+  ghost_service_file: ghost-service.yml
+  ghost_hpa_file: ghost-hpa.yml
+  ghost_dashboard: "'Ghosts Deployment Dashboard'"
+
+  #Ghost admin credentials
+  admin_email: ascn@example.com
+  admin_user_name: ascn
+  admin_password: \$2b\$10\$2OwDZbkgJ8kcnmxp1EKMmukrk1mVKQBh27oO6VgMCphPma43TtRoC
+
+  # MYSQL variables
+  mysql_host: mysql-service
+  mysql_user: ghost
+  mysql_password: passwordSegura
+  mysql_database: ghost-db
+  mysql_ctn_port: 3306
+  mysql_deploy_file: mysql-deployment.yml
+  mysql_pvc_file: mysql-pvc.yml
+  mysql_service_file: mysql-service.yml
+
+  #Path to JMeter # Needs to be changed
+  jmeter_path: home/ganso133/things/apache-jmeter-5.5/bin/jmeter
+
+

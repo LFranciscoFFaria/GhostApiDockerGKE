@@ -1,0 +1,7 @@
+---
+# Playbook to test the functionality of the ghost aplication
+- name: Tests
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_funct }

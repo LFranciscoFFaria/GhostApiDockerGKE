@@ -1,0 +1,8 @@
+---
+# Playbook to Load test the ghost deployment
+
+- name: Load test the ghost deployment
+  hosts: localhost
+  gather_facts: false
+  roles:
+  - test_load

@@ -1,0 +1,17 @@
+
+- name: Verify selenium python package
+  ansible.builtin.pip:
+    name: selenium
+
+- name: create python script to load
+  ansible.builtin.template:
+    src: template_load.py
+    dest: /tmp/load.py
+
+- name: deploy load test
+  ansible.builtin.shell: python3 /tmp/load.py
+
+- name: remove python script to template_load
+  ansible.builtin.file:
+    path: /tmp/load.py
+    state: absent

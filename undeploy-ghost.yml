@@ -1,0 +1,11 @@
+---
+# Playbook to undeploy Ghost and its component
+
+- name: Deploy ghost
+  hosts: localhost
+  gather_facts: false
+  vars:
+    delete_data : "false"
+  roles:
+      - ghost_undeployment
+      - { role: mysql_undeployment, when: delete_data == "true" }

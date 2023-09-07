@@ -1,0 +1,11 @@
+---
+
+- name: Replace old hostname with new hostname
+  ansible.builtin.replace:
+    path: tests/LoadTest#1.jmx 
+    regexp: <stringProp name="HTTPSampler.domain">(?:[0-9]{1,3}\.){3}[0-9]{1,3}</stringProp>
+    replace: <stringProp name="HTTPSampler.domain">{{ ghost_ip }}</stringProp>
+
+- name: Use jmeter to load test the deployment
+  shell: /{{jmeter_path}} -n -t tests/LoadTest#1.jmx -l testresults.jtl
+
